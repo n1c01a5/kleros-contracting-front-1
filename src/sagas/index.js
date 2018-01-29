@@ -3,6 +3,7 @@ import { spawn, call, all } from 'redux-saga/effects'
 
 import balanceSaga from './balance'
 import disputesSaga from './disputes'
+import contractsSaga from './contracts'
 
 /**
  * Makes a saga restart after an uncaught error.
@@ -29,7 +30,9 @@ function makeRestartable(saga) {
   }
 }
 
-const rootSagas = [balanceSaga, disputesSaga].map(makeRestartable)
+const rootSagas = [balanceSaga, disputesSaga, contractsSaga].map(
+  makeRestartable
+)
 
 /**
  * The root saga.

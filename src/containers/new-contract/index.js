@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import SHA3 from 'crypto-js/sha3'
 import { withRouter } from 'react-router-dom'
 import TextInput from '../../components/text-input'
-// import { contractActions } from '../../actions'
+import { contractActions } from '../../actions'
 
 let sha3 = value =>
   SHA3(value, {
@@ -23,6 +23,7 @@ class NewContract extends Component {
     const { handleSubmit, submitting, error } = this.props
     return (
       <div className="container">
+        {console.log(handleSubmit)}
         <form onSubmit={handleSubmit} className="Form-container">
           <Field
             name="payment"
@@ -116,7 +117,10 @@ export default withRouter(
     // FIXME see https://github.com/epiqueras/kleros-contractor-front/blob/master/src/containers/contracts/index.js
     reduxForm({
       form: 'NEW_CONTRACT',
-      validate
+      validate,
+      onSubmit (values, dispatch) {
+        dispatch(contractActions.createContract(values))
+      }
     })(NewContract)
   )
 )

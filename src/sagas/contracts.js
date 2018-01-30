@@ -1,7 +1,7 @@
 import unit from 'ethjs-unit'
 
 import { takeLatest, call, put } from 'redux-saga/effects'
-import { web3 as eth, kleros } from '../bootstrap/kleros'
+import kleros, { web3 as eth } from '../bootstrap/kleros'
 import { sha3256 } from 'js-sha3'
 import { receiveContract } from '../actions/contracts'
 
